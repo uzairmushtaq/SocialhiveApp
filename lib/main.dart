@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:socialhive/views/profile/profile_setting.dart';
 import 'package:socialhive/views/splashscreen/splashscreen.dart';
 
 void main() {

@@ -51,7 +51,7 @@ class ProfileCommmonContainer extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           color: value == 'not set'
                               ? Colors.black
-                              : Colors.black))),
+                              : Colors.red))),
             )),
           ],
         ),

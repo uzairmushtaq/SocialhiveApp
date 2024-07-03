@@ -31,14 +31,7 @@ class commontextfield extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(
                 color: Colors.amber,
-                // Use primary color here
                 width: 5,
-                // border: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(10),
-                //   borderSide: BorderSide(
-                //     color: AppColors.primaryColor, // Use primary color here
-                //     width: 5,
-                //   ),
               ),
             )));
   }
