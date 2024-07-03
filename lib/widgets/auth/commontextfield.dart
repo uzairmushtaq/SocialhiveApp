@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:socialhive/widgets/colors/common_app.dart';
+
 class commontextfield extends StatelessWidget {
   final String hinttext;
   final bool obscuretext;
@@ -14,31 +16,31 @@ class commontextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      autofocus: false,
-      obscureText: obscuretext,
-      keyboardType: keyboardtype,
-      textAlign: TextAlign.start,
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          icons,
-          size: 25,
-          color: Colors.grey,
-        ),
-        fillColor: Colors.white,
-        filled: true,
-        hintText: hinttext,
-        contentPadding: EdgeInsets.only(top: 5),
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: Colors.amber, // Use primary color here
-            width: 8,
-          ),
-        ),
-      ),
-    );
+        autofocus: false,
+        obscureText: obscuretext,
+        keyboardType: keyboardtype,
+        textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+            prefixIcon: Icon(icons, size: 25, color: AppColors.primaryColor),
+            hintText: hinttext,
+            hintStyle: TextStyle(color: AppColors.primaryColor),
+            contentPadding: EdgeInsets.only(top: 5),
+            floatingLabelBehavior: FloatingLabelBehavior.never,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: BorderSide(
+                color: Colors.amber,
+                // Use primary color here
+                width: 5,
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10),
+                //   borderSide: BorderSide(
+                //     color: AppColors.primaryColor, // Use primary color here
+                //     width: 5,
+                //   ),
+              ),
+            )));
   }
 }
 // import 'package:flutter/material.dart';

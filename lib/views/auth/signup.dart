@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:socialhive/views/auth/login.dart';
 import 'package:socialhive/widgets/auth/commontextfield.dart';
 import 'package:socialhive/widgets/auth/heading.dart';
+import 'package:socialhive/widgets/colors/common_app.dart';
 
 class Signupscreen extends StatelessWidget {
   Signupscreen({super.key});
@@ -12,24 +13,23 @@ class Signupscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Trade Vista",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.deepPurpleAccent,
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
+              Container(
+                height: 150,
+                width: 320,
+                child: Image.asset(
+                  "assets/image/Bold_Pink___Blue_Social_Media_S_Letter_Logo-removebg-preview (1).png",
+                  fit: BoxFit.cover,
+                ),
+              ),
               Heading_auth(
                   maintext: "Sign up to Trade Vista",
-                  middletext: " to connect with ",
-                  endtext: "Your Patnner",
+                  middletext: " to connect with Your Patnner ",
                   fontsize: 20),
               SizedBox(
                 height: 20,
@@ -91,23 +91,30 @@ class Signupscreen extends StatelessWidget {
               SizedBox(
                 height: 45,
                 width: 300,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print('Button pressed!');
-                  },
-                  child: Text(
-                    'Signup',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-
-                      // Adjust the value to change the button's roundness
+                child: Hero(
+                  tag: 'auth',
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Loginscreen()));
+                    },
+                    child: Text(
+                      'Signup',
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+
+                        // Adjust the value to change the button's roundness
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    ),
                   ),
                 ),
               ),
@@ -120,18 +127,19 @@ class Signupscreen extends StatelessWidget {
                     onPressed: () {},
                     child: Text(
                       "By resgistration you are agree to our terms and conditions",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(
+                          color: AppColors.primaryColor, fontSize: 15),
                     )),
               ),
               SizedBox(
-                height: 50,
+                height: 35,
               ),
               Row(
                 children: [
                   SizedBox(
                     width: 70,
                   ),
-                  Text("Already have an Account"),
+                  Text("Already have an Account "),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(
@@ -142,7 +150,9 @@ class Signupscreen extends StatelessWidget {
                     },
                     child: Text(
                       "Sing in",
-                      style: TextStyle(color: Colors.deepPurpleAccent),
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

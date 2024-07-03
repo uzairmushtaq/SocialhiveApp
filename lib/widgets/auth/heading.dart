@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:socialhive/widgets/colors/common_app.dart';
 
 class Heading_auth extends StatelessWidget {
   final String maintext;
   final String middletext;
-  final String endtext;
+
   final double fontsize;
   Heading_auth(
       {required this.maintext,
       required this.middletext,
-      required this.endtext,
       required this.fontsize});
 
   @override
@@ -18,21 +18,14 @@ class Heading_auth extends StatelessWidget {
         Text(
           maintext,
           style: TextStyle(
-              color: Colors.deepPurpleAccent,
+              color: AppColors.primaryColor,
               fontSize: fontsize,
               fontWeight: FontWeight.bold),
         ),
         Text(
           middletext,
           style: TextStyle(
-              color: Colors.deepPurpleAccent,
-              fontSize: fontsize,
-              fontWeight: FontWeight.bold),
-        ),
-        Text(
-          endtext,
-          style: TextStyle(
-              color: Colors.deepPurpleAccent,
+              color: AppColors.primaryColor,
               fontSize: fontsize,
               fontWeight: FontWeight.bold),
         ),

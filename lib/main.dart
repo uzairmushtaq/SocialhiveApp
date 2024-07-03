@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:socialhive/views/auth/login.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:socialhive/views/profile/profile_setting.dart';
+import 'package:socialhive/views/splashscreen/splashscreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Social Hive',
-        home: Loginscreen());
+    // user Responsive Sizer Package
+
+    return ResponsiveSizer(
+      builder: (context, orientation, screenType) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Responsive Sizer Example',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: Splashscreen());
+      },
+      maxTabletWidth: 900,
+    );
   }
 }

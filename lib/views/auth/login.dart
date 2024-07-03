@@ -2,17 +2,22 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 import 'package:socialhive/views/auth/forgetpassword.dart';
 import 'package:socialhive/views/auth/signup.dart';
+import 'package:socialhive/views/profile/profile_screen.dart';
 import 'package:socialhive/widgets/auth/commontextfield.dart';
 import 'package:socialhive/widgets/auth/heading.dart';
+import 'package:socialhive/widgets/colors/common_app.dart';
 
 class Loginscreen extends StatelessWidget {
   Loginscreen({super.key});
 
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
+
+//  button controller design
 
   void _doSomething() async {
     Timer(Duration(seconds: 3), () {
@@ -23,113 +28,132 @@ class Loginscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Trade Vista",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.deepPurpleAccent,
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          children: [
-            Heading_auth(
-                maintext: "Sign in to Trade Vista",
-                middletext: " to connect with ",
-                endtext: "Your Patnner",
-                fontsize: 20),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 50,
-              child: commontextfield(
-                  icons: Icons.email,
-                  hinttext: "Email",
-                  obscuretext: false,
-                  keyboardtype: TextInputType.emailAddress),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-                height: 50,
-                child: commontextfield(
-                    icons: Icons.password_rounded,
-                    hinttext: "Password",
-                    obscuretext: true,
-                    keyboardtype: TextInputType.number)),
-            SizedBox(
-              height: 30,
-            ),
-            SizedBox(
-              height: 45,
-              width: 300,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurpleAccent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-
-                    // Adjust the value to change the button's roundness
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            children: [
+              Container(
+                height: 150,
+                width: 320,
+                child: Image.asset(
+                  "assets/image/Bold_Pink___Blue_Social_Media_S_Letter_Logo-removebg-preview (1).png",
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            RoundedLoadingButton(
-              child: Text('Tap me!',
-                  style: TextStyle(color: Colors.deepPurpleAccent)),
-              controller: _btnController,
-              onPressed: () {},
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.fade,
-                            child: Forget_password()));
-                  },
-                  child: Text(
-                    "Forget Password",
-                    style: TextStyle(color: Colors.black),
-                  )),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 70,
-                ),
-                Text("Dont have an account"),
-                TextButton(
+              Heading_auth(
+                maintext: "Sign in to Social Hive",
+                middletext: " to connect with ",
+                fontsize: 20.sp,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 50,
+                child: commontextfield(
+                    icons: Icons.email,
+                    hinttext: "Email",
+                    obscuretext: false,
+                    keyboardtype: TextInputType.emailAddress),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                  height: 50,
+                  child: commontextfield(
+                      icons: Icons.password_rounded,
+                      hinttext: "Password",
+                      obscuretext: true,
+                      keyboardtype: TextInputType.number)),
+              SizedBox(
+                height: 30,
+              ),
+              Hero(
+                tag: 'auth',
+                child: RoundedLoadingButton(
+                    child: Text('Sign In',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 21.sp,
+                            fontWeight: FontWeight.bold)),
+                    controller: _btnController,
+                    color: AppColors.primaryColor,
+                    duration: Duration(seconds: 3),
                     onPressed: () {
-                      Navigator.pushReplacement(
+                      Future.delayed(
+                        Duration(seconds: 2),
+                        () {
+                          _btnController.success(); // Indicate success
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Prfile_screen()),
+                          );
+                        },
+                      );
+                    }),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
                           context,
                           PageTransition(
                               type: PageTransitionType.fade,
-                              child: Signupscreen()));
+                              child: Forget_password()));
                     },
-                    child: Text("Sign up"))
-              ],
-            ),
-          ],
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Forget_password(),
+                            ));
+                      },
+                      child: Text(
+                        "Forget Password",
+                        style: TextStyle(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.sp),
+                      ),
+                    )),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20.w,
+                  ),
+                  Text(
+                    "Dont have an account",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.fade,
+                                child: Signupscreen()));
+                      },
+                      child: Text(
+                        "Sign up",
+                        style: TextStyle(color: AppColors.primaryColor),
+                      ))
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
