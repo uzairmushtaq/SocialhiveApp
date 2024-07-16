@@ -7,6 +7,7 @@ import 'package:socialhive/widgets/auth/commontextfield.dart';
 import 'package:socialhive/widgets/colors/common_app.dart';
 
 // ignore: must_be_immutable
+
 class Prfile_screen extends StatefulWidget {
   Prfile_screen({super.key});
 
@@ -64,6 +65,7 @@ class _Prfile_screenState extends State<Prfile_screen> {
               Padding(
                 padding: EdgeInsets.all(40),
                 child: commontextfield(
+                  controller: TextEditingController(),
                   hinttext: "Your Name",
                   icons: Icons.person_off_outlined,
                   keyboardtype: TextInputType.name,
@@ -73,6 +75,7 @@ class _Prfile_screenState extends State<Prfile_screen> {
               Padding(
                 padding: const EdgeInsets.only(left: 40, right: 40),
                 child: commontextfield(
+                  controller: TextEditingController(),
                   hinttext: "User Name",
                   icons: Icons.supervised_user_circle,
                   keyboardtype: TextInputType.name,

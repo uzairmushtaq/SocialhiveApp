@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:page_transition/page_transition.dart';
+import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
+import 'package:socialhive/controller/usercontroller/user_controllar.dart';
+import 'package:socialhive/interfaces/auth/register_services.dart';
 
 import 'package:socialhive/views/auth/login.dart';
 import 'package:socialhive/widgets/auth/commontextfield.dart';
@@ -9,6 +11,11 @@ import 'package:socialhive/widgets/colors/common_app.dart';
 
 class Signupscreen extends StatelessWidget {
   Signupscreen({super.key});
+
+  final RoundedLoadingButtonController _btnController =
+      RoundedLoadingButtonController();
+
+  SignupServices signupServices = SignupServices();
 
   @override
   Widget build(BuildContext context) {
@@ -28,135 +35,101 @@ class Signupscreen extends StatelessWidget {
                 ),
               ),
               Heading_auth(
-                  maintext: "Sign up to Trade Vista",
-                  middletext: " to connect with Your Patnner ",
-                  fontsize: 20),
-              SizedBox(
-                height: 20,
+                maintext: "Sign up to Social Hive",
+                middletext: " to connect with Your Partner ",
+                fontsize: 20,
               ),
+              SizedBox(height: 20),
               SizedBox(
                 height: 50,
                 child: commontextfield(
-                    icons: Icons.person_2,
-                    hinttext: "user name",
-                    obscuretext: false,
-                    keyboardtype: TextInputType.emailAddress),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 50,
-                child: commontextfield(
-                    icons: Icons.email,
-                    hinttext: "Email",
-                    obscuretext: false,
-                    keyboardtype: TextInputType.emailAddress),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                  height: 50,
-                  child: commontextfield(
-                      icons: Icons.password_rounded,
-                      hinttext: "Password",
-                      obscuretext: true,
-                      keyboardtype: TextInputType.number)),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 50,
-                child: commontextfield(
-                    icons: Icons.confirmation_number_sharp,
-                    hinttext: "Confirm password",
-                    obscuretext: false,
-                    keyboardtype: TextInputType.emailAddress),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 50,
-                child: commontextfield(
-                    icons: Icons.receipt,
-                    hinttext: "Ref code",
-                    obscuretext: false,
-                    keyboardtype: TextInputType.emailAddress),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 45,
-                width: 300,
-                child: Hero(
-                  tag: 'auth',
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Loginscreen()));
-                    },
-                    child: Text(
-                      'Signup',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-
-                        // Adjust the value to change the button's roundness
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    ),
-                  ),
+                  controller: signupServices.emailcontroller,
+                  icons: Icons.email,
+                  hinttext: "Email",
+                  obscuretext: false,
+                  keyboardtype: TextInputType.emailAddress,
                 ),
               ),
+              SizedBox(height: 15),
               SizedBox(
-                height: 20,
+                height: 50,
+                child: commontextfield(
+                  controller: signupServices.passwordcontroller,
+                  icons: Icons.password_rounded,
+                  hinttext: "Password",
+                  obscuretext: true,
+                  keyboardtype: TextInputType.text,
+                ),
               ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "By resgistration you are agree to our terms and conditions",
-                      style: TextStyle(
-                          color: AppColors.primaryColor, fontSize: 15),
-                    )),
-              ),
+              SizedBox(height: 15),
               SizedBox(
-                height: 35,
+                height: 50,
+                child: commontextfield(
+                  controller: signupServices.repasswordcontroller,
+                  icons: Icons.confirmation_number_sharp,
+                  hinttext: "Confirm password",
+                  obscuretext: true,
+                  keyboardtype: TextInputType.text,
+                ),
               ),
+              SizedBox(height: 30),
+              Hero(
+                tag: 'auth',
+                child: RoundedLoadingButton(
+                  child: Text(
+                    'Signup',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  controller: _btnController,
+                  color: AppColors.primaryColor,
+                  onPressed: () async {
+                    try {
+                      await Usercontrollar().registerUser(
+                        signupServices.emailcontroller.text,
+                        signupServices.passwordcontroller.text,
+                      );
+                      _btnController.success(); // Indicate success
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Loginscreen()),
+                      );
+                    } catch (e) {
+                      print("Error during signup: $e");
+                      _btnController.error(); // Indicate error
+                      // Show error message to user
+                    }
+                  },
+                ),
+              ),
+              SizedBox(height: 20),
               Row(
                 children: [
-                  SizedBox(
-                    width: 70,
-                  ),
+                  SizedBox(width: 70),
                   Text("Already have an Account "),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.fade,
-                              child: Loginscreen()));
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: Loginscreen(),
+                        ),
+                      );
                     },
                     child: Text(
-                      "Sing in",
+                      "Sign in",
                       style: TextStyle(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.bold),
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

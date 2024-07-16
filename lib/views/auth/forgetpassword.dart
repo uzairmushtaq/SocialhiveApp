@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:socialhive/interfaces/auth/forgetpassword_sevices.dart';
 import 'package:socialhive/widgets/auth/commontextfield.dart';
 
 class Forget_password extends StatelessWidget {
-  const Forget_password({super.key});
+  Forget_password({super.key});
+
+  ForgetpasswordSevices forgetpasswordSevices = ForgetpasswordSevices();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,7 @@ class Forget_password extends StatelessWidget {
                 height: 20,
               ),
               commontextfield(
+                  controller: TextEditingController(),
                   icons: Icons.email,
                   hinttext: "Enter your Email",
                   obscuretext: false,

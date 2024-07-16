@@ -6,11 +6,13 @@ class commontextfield extends StatelessWidget {
   final String hinttext;
   final bool obscuretext;
   final TextInputType keyboardtype;
+  final TextEditingController controller;
   final IconData icons;
   const commontextfield(
       {required this.icons,
       required this.hinttext,
       required this.obscuretext,
+      required this.controller,
       required this.keyboardtype});
 
   @override
@@ -19,6 +21,7 @@ class commontextfield extends StatelessWidget {
         autofocus: false,
         obscureText: obscuretext,
         keyboardType: keyboardtype,
+        controller: controller,
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(

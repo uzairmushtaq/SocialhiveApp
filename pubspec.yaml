@@ -54,6 +54,10 @@ dependencies:
   list_tile_more_customizable: ^3.0.0
   photo_view: ^0.15.0
   route_transitions: ^2.0.1
+  firebase_auth: ^5.1.2
+  firebase_core: ^3.2.0
+  cloud_firestore: ^5.1.0
+  achievement_view: ^1.0.1
   
 dev_dependencies:
   flutter_test:

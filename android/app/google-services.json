@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085002557323",
+    "project_id": "socialhive-962ca",
+    "storage_bucket": "socialhive-962ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085002557323:android:80e65212d555e3c192318e",
+        "android_client_info": {
+          "package_name": "com.example.socialhive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiZXt15N21LvCrUL7gwLcyV-Ar2sLW4aw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

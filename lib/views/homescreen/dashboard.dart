@@ -1,6 +1,7 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:socialhive/views/featurs/Album/album_main.dart';
 import 'package:socialhive/views/featurs/deviceinfo/device_info.dart';
 import 'package:socialhive/widgets/colors/common_app.dart';
 import 'package:socialhive/widgets/homepage/dashboard/gradiat_container.dart';
@@ -283,7 +284,7 @@ class Dashboard1 extends StatelessWidget {
                     child: InkWell(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => DeviceInfo()));
+                        MaterialPageRoute(builder: (context) => AlbumMain()));
                   },
                   child: GradientContainer(
                     gradientColors: [Colors.yellow, Colors.pinkAccent],

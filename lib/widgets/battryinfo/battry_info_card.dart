@@ -14,6 +14,12 @@ class Two_value_card extends StatelessWidget {
   final Widget? subwidget;
   final Color? clr;
   final Color? clr1;
+  //  final String textmain;
+  // final String value;
+  // final Widget? subwidget;
+  // final Color? clr;
+  // final Color? clr1;]
+
 
   @override
   Widget build(BuildContext context) {
