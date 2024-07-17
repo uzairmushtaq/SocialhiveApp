@@ -7,36 +7,39 @@ class commontextfield extends StatelessWidget {
   final bool obscuretext;
   final TextInputType keyboardtype;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
   final IconData icons;
   const commontextfield(
       {required this.icons,
       required this.hinttext,
       required this.obscuretext,
       required this.controller,
-      required this.keyboardtype});
+      required this.keyboardtype,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-        autofocus: false,
-        obscureText: obscuretext,
-        keyboardType: keyboardtype,
-        controller: controller,
-        textAlign: TextAlign.start,
-        textAlignVertical: TextAlignVertical.center,
-        decoration: InputDecoration(
-            prefixIcon: Icon(icons, size: 25, color: AppColors.primaryColor),
-            hintText: hinttext,
-            hintStyle: TextStyle(color: AppColors.primaryColor),
-            contentPadding: EdgeInsets.only(top: 5),
-            floatingLabelBehavior: FloatingLabelBehavior.never,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
-                color: Colors.amber,
-                width: 5,
-              ),
-            )));
+      autofocus: false,
+      obscureText: obscuretext,
+      keyboardType: keyboardtype,
+      controller: controller,
+      textAlign: TextAlign.start,
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+          prefixIcon: Icon(icons, size: 25, color: AppColors.primaryColor),
+          hintText: hinttext,
+          hintStyle: TextStyle(color: AppColors.primaryColor),
+          contentPadding: EdgeInsets.only(top: 5),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: Colors.amber,
+              width: 5,
+            ),
+          )),
+    );
   }
 }
 // import 'package:flutter/material.dart';

@@ -14,7 +14,7 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
 // Cretae Initsatte Function
   void initState() {
-    Timer(Duration(seconds: 10), () {
+    Timer(Duration(seconds: 4), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Loginscreen()));
     });
