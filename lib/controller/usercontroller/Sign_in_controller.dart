@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
-class Usercontrollarlogin {
+class Usercontrollarlogin extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> loginUser(String email, String password) async {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import 'package:socialhive/controller/usercontroller/user_controllerlogin.dart';
-import 'package:socialhive/interfaces/auth/login_services.dart';
+import 'package:socialhive/controller/usercontroller/Signup_controller.dart';
+import 'package:socialhive/controller/usercontroller/Sign_in_controller.dart';
 import 'package:socialhive/views/auth/forgetpassword.dart';
 import 'package:socialhive/views/auth/signup.dart';
 import 'package:socialhive/views/profile/profile_screen.dart';
@@ -19,7 +19,7 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-  final LoginServices loginServices = LoginServices();
+  final loginServices = Get.put(Usercontrollars());
   bool isLoading = false;
 
   @override
@@ -57,6 +57,12 @@ class _LoginscreenState extends State<Loginscreen> {
                       hinttext: "Email",
                       obscuretext: false,
                       keyboardtype: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   SizedBox(
@@ -112,7 +118,7 @@ class _LoginscreenState extends State<Loginscreen> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Prfile_screen()),
+                                      builder: (context) => ProfileScreen()),
                                 );
                               } catch (e) {
                                 print("Error during login: $e");
@@ -135,7 +141,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           context,
                           PageTransition(
                             type: PageTransitionType.fade,
-                            child: Forget_password(),
+                            child: ForgetPasswordScreen(),
                           ),
                         );
                       },

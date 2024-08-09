@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
-import 'package:socialhive/controller/usercontroller/user_controllar.dart';
-import 'package:socialhive/interfaces/auth/register_services.dart';
+import 'package:socialhive/controller/usercontroller/Signup_controller.dart';
 import 'package:socialhive/views/auth/login.dart';
 import 'package:socialhive/widgets/auth/heading.dart';
 import 'package:socialhive/widgets/colors/common_app.dart';
@@ -18,7 +18,7 @@ class Signupscreen extends StatefulWidget {
 class _SignupscreenState extends State<Signupscreen> {
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
-  final SignupServices signupServices = SignupServices();
+  final signupServices = Get.put(Usercontrollars());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _errorController = TextEditingController();
 
@@ -121,25 +121,25 @@ class _SignupscreenState extends State<Signupscreen> {
                     color: AppColors.primaryColor,
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        try {
-                          await Usercontrollars().registerUser(
-                            signupServices.emailcontroller.text,
-                            signupServices.passwordcontroller.text,
-                          );
+                        signupServices.registerUser();
 
-                          _btnController.success(); // Indicate success
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Loginscreen()),
-                          );
-                        } catch (e) {
-                          print("Error during signup: $e");
-                          _errorController.text = "Error during signup: $e";
-                          _btnController.error();
-                        }
-                      } else {
-                        _btnController.reset();
+                        // try {
+
+                        //   await Usercontrollars().registerUser(
+
+                        //   );
+
+                        _btnController.success(); // Indicate success
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Loginscreen()),
+                        );
+                        // } catch (e) {
+                        //   print("Error during signup: $e");
+                        //   _errorController.text = "Error during signup: $e";
+                        //   _btnController.error();
+                        // }
                       }
                     },
                   ),

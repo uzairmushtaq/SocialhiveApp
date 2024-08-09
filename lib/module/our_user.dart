@@ -1,7 +1,9 @@
 // Module
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class OurUser {
-  String? uid;
+  final String? uid;
   String? email;
   String? password;
   String? username;
@@ -14,7 +16,7 @@ class OurUser {
   DateTime? accountcreated;
 
   OurUser(
-      this.uid,
+      {this.uid,
       this.email,
       this.password,
       this.username,
@@ -24,5 +26,12 @@ class OurUser {
       this.frienduid,
       this.chatroomid,
       this.phone,
-      this.accountcreated);
+      this.accountcreated});
+
+  factory OurUser.fromDocument(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    return OurUser(
+      uid: document.data()!['uid'],
+    );
+  }
 }

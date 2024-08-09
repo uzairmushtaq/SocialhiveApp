@@ -19,8 +19,9 @@ class commontextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       autofocus: false,
+      validator: validator,
       obscureText: obscuretext,
       keyboardType: keyboardtype,
       controller: controller,
